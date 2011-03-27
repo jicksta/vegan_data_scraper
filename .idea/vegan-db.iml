@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RUBY_MODULE" version="4">
+  <component name="GemRequirementsHolder" version="3">
+    <requirement>
+      <requirement>
+        <dependency name="activesupport" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="i18n" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="mechanize" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="rspec" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="vcr" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="webmock" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+  </component>
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.bundle" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] webmock (v1.6.2, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/webmock-1.6.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] crack (v0.1.8, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/crack-0.1.8)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] vcr (v1.7.2, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/vcr-1.7.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec (v2.5.0, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/rspec-2.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-mocks (v2.5.0, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/rspec-mocks-2.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-expectations (v2.5.0, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/rspec-expectations-2.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rspec-core (v2.5.1, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/rspec-core-2.5.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] addressable (v2.2.4, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/addressable-2.2.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] nokogiri (v1.4.4, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/nokogiri-1.4.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mechanize (v1.0.0, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/mechanize-1.0.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] activesupport (v3.0.5, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/activesupport-3.0.5)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] bundler (v1.0.10, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/bundler-1.0.10)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] diff-lcs (v1.1.2, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/diff-lcs-1.1.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] i18n (v0.5.0, /Users/jicksta/.rvm/gems/ruby-1.9.2-p0@vegan-db/gems/i18n-0.5.0)" level="application" />
+  </component>
+</module>
+
