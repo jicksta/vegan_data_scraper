@@ -1,27 +1,18 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe "Parsing data on a particular beer page" do
+describe VeganDrinks::DetailsPage do
 
-  describe ".from_url" do
-    it "should instantiate a new DetailsPage with a Mechanize agent on the page given" do
-      url = "http://barnivore.com/beer/938/Abbaye-des-Rocs" # Picked arbitrarily
-      mock_agent = mock "Mechanize"
-      Mechanize.should_receive(:new).and_return mock_agent
-      mock_agent.should_receive(:get).once.with(url)
-      DetailsPage.from_url(url).should be_kind_of DetailsPage
-    end
-  end
-
+  it_behaves_like "a fetcher class"
+  
   describe "integration tests with the site HTML" do
-
 
     describe "For a normal vegan brewery, Abbaye des Rocs" do
 
       let(:normal_vegan_brewery) do
         url = "http://barnivore.com/beer/938/Abbaye-des-Rocs"
         VCR.use_cassette('normal_vegan_brewery', :record => :new_episodes) do
-          DetailsPage.from_url(url)
+          VeganDrinks::DetailsPage.new(url).tap(&:page)
         end
       end
 
@@ -91,7 +82,7 @@ describe "Parsing data on a particular beer page" do
       let(:some_non_vegan_options_brewery) do
         url = "http://barnivore.com/beer/742/21st-Amendment-Brewery"
         VCR.use_cassette('some_non_vegan_options_brewery', :record => :new_episodes) do
-          DetailsPage.from_url(url)
+          VeganDrinks::DetailsPage.new(url).tap(&:page)
         end
       end
 
