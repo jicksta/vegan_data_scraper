@@ -3,6 +3,33 @@ require 'mechanize'
 module VeganDrinks
   class DetailsPage < Fetcher
 
+    ATTRIBUTES = %w[
+      address
+      company_email
+      company_url
+      contact_email
+      date_added
+      date_updated
+      double_checker_name
+      fax_number
+      first_checker_name
+      phone_number
+      products
+      url
+    ]
+
+    def self.from_url(url)
+      page = Mechanize.new.get(url)
+      new(page)
+    end
+
+    attr_reader :url, :page
+
+    def initialize(page)
+      @page = page
+      @url = @page.uri.to_s
+    end
+
     def company_name
       page.search("#content h1").text[/^(.+):[^:]+$/, 1]
     rescue
@@ -26,7 +53,7 @@ module VeganDrinks
       value_text_for_table_row "Email"
     end
 
-    def url
+    def company_url
       value_text_for_table_row "URL"
     end
 
@@ -70,7 +97,25 @@ module VeganDrinks
       end
     end
 
+    def as_json
+      ATTRIBUTES.inject({}) do |json, attribute|
+        json[attribute] = send attribute
+        json
+      end
+    end
+
     private
+
+    def parse_veganosity(veganosity)
+      case veganosity
+        when /Not Vegan Friendly/i
+          false
+        when /Vegan Friendly/i
+          true
+        else
+          raise "Unrecognized veganosity #{veganosity.inspect}!"
+      end
+    end
 
     def value_node_for_table_row(name)
       cells = page.search("#content tr > td:first")
@@ -80,10 +125,6 @@ module VeganDrinks
     def value_text_for_table_row(name)
       node = value_node_for_table_row(name)
       node.inner_text.strip if node
-    end
-
-    def parse_veganosity(veganosity)
-      veganosity.strip == "Vegan Friendly"
     end
 
   end

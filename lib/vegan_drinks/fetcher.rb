@@ -1,16 +1,15 @@
 module VeganDrinks
   class Fetcher
-
     BR = /<br\s*\/?>/i
 
-    attr_reader :url
+    protected
 
-    def initialize(url)
-      @url = url
+    def info(*args)
+      VeganDrinks.logger.info(*args)
     end
 
-    def page
-      @page ||= Mechanize.new.get(@url)
+    def debug(*args)
+      VeganDrinks.logger.debug(*args)
     end
 
   end

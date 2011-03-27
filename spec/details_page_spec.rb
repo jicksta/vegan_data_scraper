@@ -3,7 +3,12 @@ require 'spec_helper'
 
 describe VeganDrinks::DetailsPage do
 
-  it_behaves_like "a fetcher class"
+  it "should do a web request when instantiating with a URL" do
+    url = "http://example.com"
+    stub_request :get, url
+    VeganDrinks::DetailsPage.from_url(url)
+    WebMock.should have_requested(:get, url)
+  end
   
   describe "integration tests with the site HTML" do
 
@@ -12,7 +17,19 @@ describe VeganDrinks::DetailsPage do
       let(:normal_vegan_brewery) do
         url = "http://barnivore.com/beer/938/Abbaye-des-Rocs"
         VCR.use_cassette('normal_vegan_brewery', :record => :new_episodes) do
-          VeganDrinks::DetailsPage.new(url).tap(&:page)
+          VeganDrinks::DetailsPage.from_url(url)
+        end
+      end
+
+      describe "#as_json" do
+        before { @json = normal_vegan_brewery.as_json }
+        it "should contain the correct keys" do
+          @json.keys.should include(*VeganDrinks::DetailsPage::ATTRIBUTES)
+          @json.should include "products"
+        end
+        it "should convert the products into a correct JSON object" do
+          @json["products"].size.should == normal_vegan_brewery.products.size
+          @json["products"]["Abbaye des Rocs"].should == true
         end
       end
 
@@ -37,8 +54,8 @@ describe VeganDrinks::DetailsPage do
         normal_vegan_brewery.contact_email.should == "abbaye.des.rocs@skynet.be"
       end
 
-      specify "#url" do
-        normal_vegan_brewery.url.should == "http://www.abbaye-des-rocs.com/page%20en%20anglais.htm"
+      specify "#company_url" do
+        normal_vegan_brewery.company_url.should == "http://www.abbaye-des-rocs.com/page%20en%20anglais.htm"
       end
 
       specify "#first_checker_name" do
@@ -56,6 +73,7 @@ describe VeganDrinks::DetailsPage do
       specify "#date_added" do
         normal_vegan_brewery.date_added.should == "about 1 year ago"
       end
+
       specify "#date_updated" do
         normal_vegan_brewery.date_updated.should be_nil
       end
@@ -82,7 +100,7 @@ describe VeganDrinks::DetailsPage do
       let(:some_non_vegan_options_brewery) do
         url = "http://barnivore.com/beer/742/21st-Amendment-Brewery"
         VCR.use_cassette('some_non_vegan_options_brewery', :record => :new_episodes) do
-          VeganDrinks::DetailsPage.new(url).tap(&:page)
+          VeganDrinks::DetailsPage.from_url(url)
         end
       end
 
@@ -106,6 +124,5 @@ describe VeganDrinks::DetailsPage do
     end
 
   end
-
 
 end

@@ -1,5 +1,3 @@
-require 'pp'
-
 source :rubygems
 
 gem "mechanize"
